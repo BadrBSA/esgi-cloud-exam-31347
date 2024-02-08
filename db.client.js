@@ -2,14 +2,19 @@ const { Sequelize } = require('sequelize')
 
 // database
 const sequelize = new Sequelize(
-  'postgres://fakeurl', // TODO
+  process.env.DATABASE_LINK,
   {
+    dialect: 'postgres',
     dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false,
       },
     },
+    define: {
+      createdAt: 'added',
+      updatedAt: 'updated',
+    }
   },
 );
 
